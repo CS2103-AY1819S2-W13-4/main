@@ -4,8 +4,9 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-Giatros was developed by the https://github.com/CS2103-AY1819S2-W13-4[CS2103-AY1819S2-W13-4] team. +
-
+AddressBook - Level 4 was developed by the https://se-edu.github.io/docs/Team.html[se-edu] team. +
+_{The dummy content given below serves as a placeholder to be used by future forks of the project.}_ +
+{empty} +
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
 == Project Team
@@ -14,8 +15,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 image::chuaes.png[width="150", align="left"]
 {empty}[https://github.com/chuaes[github]] [<<johndoe#, portfolio>>]
 
-Role: Team Lead, Scheduling and Tracking +
-Responsibilities: In charge of authentication, user management and patient appointment features
+Role: Project Advisor
 
 '''
 
@@ -23,8 +23,8 @@ Responsibilities: In charge of authentication, user management and patient appoi
 image::sickerin.png[width="150", align="left"]
 {empty}[http://github.com/sickerin[github]] [<<johndoe#, portfolio>>]
 
-Role: Testing, Code Quality +
-Responsibilities: In charge of patient record and pharmacy inventory features
+Role: Developer +
+Responsibilities: Data
 
 '''
 
@@ -32,9 +32,8 @@ Responsibilities: In charge of patient record and pharmacy inventory features
 image::radhika-lakhtakia.png[width="150", align="left"]
 {empty}[http://github.com/radhika-lakhtakia[github]] [<<johndoe#, portfolio>>]
 
-
-Role: Developer, Integration +
-Responsibilities: In charge of room booking feature
+Role: Developer +
+Responsibilities: Dev Ops + Threading
 
 '''
 
@@ -42,7 +41,7 @@ Responsibilities: In charge of room booking feature
 image::wfxronald.png[width="150", align="left"]
 {empty}[http://github.com/wfxronald[github]] [<<johndoe#, portfolio>>]
 
-Role: Documentation, Deliverables and Deadlines +
-Responsibilities: In charge of patient allergy feature
+Role: Developer +
+Responsibilities: UI
 
 '''

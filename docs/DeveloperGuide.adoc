@@ -1,4 +1,4 @@
-= Giatros - Developer Guide
+= AddressBook Level 4 - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -13,9 +13,9 @@ ifdef::env-github[]
 :warning-caption: :warning:
 :experimental:
 endif::[]
-:repoURL: https://github.com/CS2103-AY1819S2-W13-4/main
+:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
 
-By: `CS2103-AY1819S2-W13-4`      Since: `January 2019`      Licence: `MIT`
+By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
 == Setting up
 
@@ -811,22 +811,13 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 
 *Target user profile*:
 
-* Hospital Receptionists
-** Has a need to manage a significant number of patients
-** Need to coordinate manpower in the hospital
-** Would like to manage patient appointment well
-** Would like to manage where patients will recover
-** Would like to manage where doctors will perform treatment
+* has a need to manage a significant number of contacts
+* prefer desktop apps over other types
+* can type fast
+* prefers typing over mouse input
+* is reasonably comfortable using CLI apps
 
-* Pharmacists
-** Decide what kind of medication should be prescribed, taking into consideration the patient’s allergy
-* Doctors
-** Decide what kind of treatment works best for a particular patient, and give a more personalised treatment
-** Manage his or her time well by knowing when exactly are their patient appointments
-
-
-*Value proposition*: Giatros acts as an integrated platform that improves the coordination between
-the various parties involved in a hospital, including hospital staffs and patients
+*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
 
 [appendix]
 == User Stories
@@ -836,85 +827,35 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |receptionist |find a patient in the database |decide whether the patient has been registered before
+|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |receptionist |add a new patient to the database |register a patient who has never visited our hospital before
+|`* * *` |user |add a new person |
 
-|`* * *` |receptionist |delete a patient from the database |remove erroneous details that have been accidentally added
+|`* * *` |user |delete a person |remove entries that I no longer need
 
-|`* * *` |receptionist |add a patient’s appointment |keep track of the appointments in the hospital
+|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
-|`* * *` |receptionist |edit a patient’s appointment |update an appointment that has been changed to another date
+|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
-|`* * *` |receptionist |delete a patient’s appointment |remove an appointment that has been cancelled or erroneously input
-
-|`* * *` |doctor |add a patient’s allergy |make sure that proper treatment and medication can be given to the patient
-
-|`* * *` |doctor |edit a patient’s allergy |update the patient’s allergy data
-
-|`* * *` |doctor |delete a patient’s allergy |remove an allergy that has been erroneously input or mysteriously cured
-
-|`* * *` |pharmacist |check a patient’s allergy |give out the proper medication
-
-|`* *` |receptionist |view the user guide |find out about the commands available in the application
-
-|`* *` |receptionist |add room booking for surgery |patient can be treated by doctor
-
-|`* *` |receptionist |edit room booking for surgery |prioritize urgent surgeries
-
-|`* *` |receptionist |add patient into a surgery room |patient can be allocated to a room properly
-
-|`* *` |receptionist |view all available patient recovery rooms |locate available rooms for new patients
-
-|`* *` |doctor |check a patient’s appointment |better allocate my timetable
-
-|`*` |receptionist |the search result to be shown neatly |locate and process work faster
-
-|`*` |doctor |all my upcoming appointments to be displayed in a dashboard |keep track of all my appointments
-
-|`*` |doctor |view room booking |find out where the treatment is being delivered
-
-|`*` |pharmacist |have a drug inventory feature |keep track of the drug inventory status
+|`*` |user with many persons in the address book |sort persons by name |locate a person easily
 |=======================================================================
 
-_{More listed in our Github issues}_
+_{More to be added}_
 
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is `Giatros` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Add patient
+=== Use case: Delete person
 
 *MSS*
 
-1. Receptionist encounters a new patient.
-2. Receptionist checks whether the new patient is registered in the system.
-3. Receptionist requests for the patient’s personal data.
-4. Receptionist adds the patient into the system.
-5. Giatros shows a message when addition of patient is successful.
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 4a. The receptionist did not input data in the specified format.
-+
-[none]
-** 4a1. Giatros shows an error message, along with a hint on how to input the data in the right format
-+
-Use case resumes at step 4.
-
-=== Use case: Delete patient
-
-*MSS*
-
-1. Receptionist requests to list all patients in the database.
-2. Giatros shows a list of patients registered in the database.
-3. Receptionist requests to delete a specific person in the list.
-4. Giatros deletes the person.
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  AddressBook deletes the person
 +
 Use case ends.
 
@@ -928,7 +869,7 @@ Use case ends.
 * 3a. The given index is invalid.
 +
 [none]
-** 3a1. Giatros shows an error message, prompting for a valid index.
+** 3a1. AddressBook shows an error message.
 +
 Use case resumes at step 2.
 
@@ -938,7 +879,8 @@ _{More to be added}_
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
-.  Should be able to store millions of patients’ information without affecting the performance of the system.
+.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 _{More to be added}_
 
@@ -948,6 +890,8 @@ _{More to be added}_
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
 
+[[private-contact-detail]] Private contact detail::
+A contact detail that is not meant to be shared with others
 
 [appendix]
 == Product Survey
