@@ -76,8 +76,7 @@ public class AddallCommand extends Command {
 
         if (!editedPatient.equals(patientToEdit)) {
             return new CommandResult(generateSuccessMessage(editedPatient));
-        }
-        else {
+        } else {
             return new CommandResult(generateFailureMessage(editedPatient));
         }
     }

@@ -1,12 +1,9 @@
 package seedu.giatros.ui;
 
-import static java.util.Objects.requireNonNull;
-
 import java.net.URL;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;

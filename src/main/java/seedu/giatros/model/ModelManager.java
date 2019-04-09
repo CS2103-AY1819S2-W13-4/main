@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.giatros.commons.core.GuiSettings;
 import seedu.giatros.commons.core.LogsCenter;
-import seedu.giatros.commons.events.ui.ToggleSidePanelVisibilityEvent;
 import seedu.giatros.model.account.Account;
 import seedu.giatros.model.patient.Patient;
 import seedu.giatros.model.patient.exceptions.PatientNotFoundException;
