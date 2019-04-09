@@ -14,7 +14,6 @@ import guitests.guihandles.HelpWindowHandle;
 import seedu.giatros.logic.commands.DeleteCommand;
 import seedu.giatros.logic.commands.HelpCommand;
 import seedu.giatros.logic.commands.SelectCommand;
-import seedu.giatros.ui.BrowserPanel;
 import seedu.giatros.ui.StatusBarFooter;
 
 /**
