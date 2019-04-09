@@ -46,7 +46,6 @@ public class PatientBuilder {
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
-        allergy = patientToCopy.getAllergy();
         allergies = new HashSet<>(patientToCopy.getAllergies());
     }
 
@@ -63,6 +62,14 @@ public class PatientBuilder {
      */
     public PatientBuilder withAllergies(String ... allergies) {
         this.allergies = SampleDataUtil.getAllergySet(allergies);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code allergy} to the {@code Patient} that we are building.
+     */
+    public PatientBuilder withAllergy(String allergy) {
+        this.allergies.add(new Allergy(allergy));
         return this;
     }
 
@@ -90,16 +97,8 @@ public class PatientBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Allergy} of the {@code Patient} that we are building.
-     */
-    public PatientBuilder withAllergy(String allergy) {
-        this.allergy = new Allergy(allergy);
-        return this;
-    }
-
     public Patient build() {
-        return new Patient(name, phone, email, address, allergy, allergies);
+        return new Patient(name, phone, email, address, allergies);
     }
 
 }

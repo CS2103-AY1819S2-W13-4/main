@@ -34,7 +34,6 @@ public class GuiTestAssert {
         assertEquals(expectedPatient.getPhone().value, actualCard.getPhone());
         assertEquals(expectedPatient.getEmail().value, actualCard.getEmail());
         assertEquals(expectedPatient.getAddress().value, actualCard.getAddress());
-        assertEquals(expectedPatient.getAllergy().allergyName, actualCard.getAllergy());
         assertEquals(expectedPatient.getAllergies().stream().map(allergy -> allergy.allergyName)
                 .collect(Collectors.toList()), actualCard.getAllergies());
     }

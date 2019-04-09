@@ -40,7 +40,7 @@ public class TypicalPatients {
     public static final Patient FIONA = new PatientBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Patient GEORGE = new PatientBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withAllergy("ibuprofen").build();
+            .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
     public static final Patient HOON = new PatientBuilder().withName("Hoon Meier").withPhone("8482424")

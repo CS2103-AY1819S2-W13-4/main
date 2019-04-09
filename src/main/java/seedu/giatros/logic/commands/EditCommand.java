@@ -99,10 +99,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
-        Allergy updatedAllergy = patientToEdit.getAllergy(); // Currently, cannot edit allergy yet
         Set<Allergy> updatedAllergies = editPatientDescriptor.getAllergies().orElse(patientToEdit.getAllergies());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAllergy, updatedAllergies);
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAllergies);
     }
 
     @Override

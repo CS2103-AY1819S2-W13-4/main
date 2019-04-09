@@ -43,10 +43,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Allergy allergy = new Allergy("none"); // Currently, cannot add a person with allergy immediately
         Set<Allergy> allergyList = ParserUtil.parseAllergies(argMultimap.getAllValues(PREFIX_ALLERGY));
 
-        Patient patient = new Patient(name, phone, email, address, allergy, allergyList);
+        Patient patient = new Patient(name, phone, email, address, allergyList);
 
         return new AddCommand(patient);
     }

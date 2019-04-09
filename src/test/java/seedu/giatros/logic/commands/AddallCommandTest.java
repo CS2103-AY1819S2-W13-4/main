@@ -36,8 +36,7 @@ public class AddallCommandTest {
         Patient firstPatient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         Patient editedPatient = new PatientBuilder(firstPatient).withAllergy(ALLERGY_STUB).build();
 
-        AddallCommand addallCommand = new AddallCommand(INDEX_FIRST_PATIENT,
-                new Allergy(editedPatient.getAllergy().allergyName));
+        AddallCommand addallCommand = new AddallCommand(INDEX_FIRST_PATIENT, editedPatient.getAllergies());
 
         String expectedMessage = String.format(AddallCommand.MESSAGE_ADD_ALLERGY_SUCCESS, editedPatient);
 
@@ -56,8 +55,7 @@ public class AddallCommandTest {
         Patient editedPatient = new PatientBuilder(model.getFilteredPatientList()
                 .get(INDEX_FIRST_PATIENT.getZeroBased())).withAllergy(ALLERGY_STUB).build();
 
-        AddallCommand addallCommand = new AddallCommand(INDEX_FIRST_PATIENT,
-                new Allergy(editedPatient.getAllergy().allergyName));
+        AddallCommand addallCommand = new AddallCommand(INDEX_FIRST_PATIENT, editedPatient.getAllergies());
 
         String expectedMessage = String.format(AddallCommand.MESSAGE_ADD_ALLERGY_SUCCESS, editedPatient);
 

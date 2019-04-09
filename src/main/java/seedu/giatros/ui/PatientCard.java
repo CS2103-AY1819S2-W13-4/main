@@ -37,8 +37,6 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label allergy;
-    @FXML
     private FlowPane tags;
 
     public PatientCard(Patient patient, int displayedIndex) {
@@ -49,7 +47,6 @@ public class PatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
-        allergy.setText(patient.getAllergy().allergyName);
         createAllergy(patient);
     }
 

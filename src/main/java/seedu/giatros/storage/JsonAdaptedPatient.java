@@ -28,7 +28,6 @@ class JsonAdaptedPatient {
     private final String phone;
     private final String email;
     private final String address;
-    private final String allergy;
     private final List<JsonAdaptedAllergy> allergied = new ArrayList<>();
 
     /**
@@ -42,7 +41,6 @@ class JsonAdaptedPatient {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.allergy = "none"; // Currently, cannot create patient with allergy immediately
         if (allergied != null) {
             this.allergied.addAll(allergied);
         }
@@ -56,7 +54,6 @@ class JsonAdaptedPatient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        allergy = source.getAllergy().allergyName;
         allergied.addAll(source.getAllergies().stream()
                 .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
@@ -105,13 +102,8 @@ class JsonAdaptedPatient {
         }
         final Address modelAddress = new Address(address);
 
-        if (allergy == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Allergy.class.getSimpleName()));
-        }
-        final Allergy modelAllergy = new Allergy(allergy);
-
         final Set<Allergy> modelAllergies = new HashSet<>(patientAllergies);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelAllergy, modelAllergies);
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelAllergies);
     }
 
 }

@@ -17,7 +17,6 @@ import guitests.guihandles.PatientListPanelHandle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.giatros.model.allergy.Allergy;
 import seedu.giatros.model.patient.Address;
 import seedu.giatros.model.patient.Email;
 import seedu.giatros.model.patient.Name;
@@ -85,8 +84,7 @@ public class PatientListPanelTest extends GuiUnitTest {
             Phone phone = new Phone("000");
             Email email = new Email("a@aa");
             Address address = new Address("a");
-            Allergy allergy = new Allergy("none");
-            Patient patient = new Patient(name, phone, email, address, allergy, Collections.emptySet());
+            Patient patient = new Patient(name, phone, email, address, Collections.emptySet());
             backingList.add(patient);
         }
         return backingList;

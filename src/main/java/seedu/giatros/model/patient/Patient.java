@@ -22,19 +22,17 @@ public class Patient {
 
     // Data fields
     private final Address address;
-    private final Allergy allergy;
     private final Set<Allergy> allergies = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Allergy allergy, Set<Allergy> allergies) {
-        requireAllNonNull(name, phone, email, address, allergy, allergies);
+    public Patient(Name name, Phone phone, Email email, Address address, Set<Allergy> allergies) {
+        requireAllNonNull(name, phone, email, address, allergies);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.allergy = allergy;
         this.allergies.addAll(allergies);
     }
 
@@ -54,16 +52,23 @@ public class Patient {
         return address;
     }
 
-    public Allergy getAllergy() {
-        return allergy;
-    }
-
     /**
      * Returns an immutable allergy set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Allergy> getAllergies() {
         return Collections.unmodifiableSet(allergies);
+    }
+
+    /**
+     *
+     */
+    public Set<Allergy> removeAllergy(Allergy allergy) {
+        boolean removed = allergies.remove(allergy);
+        if (!removed) {
+            // Returns an error that says no such allergy found
+        }
+        return allergies;
     }
 
     /**
