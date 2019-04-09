@@ -13,9 +13,8 @@ import seedu.giatros.commons.core.LogsCenter;
 import seedu.giatros.commons.exceptions.IllegalValueException;
 import seedu.giatros.model.GiatrosBook;
 import seedu.giatros.model.ReadOnlyGiatrosBook;
-import seedu.giatros.model.patient.Patient;
 import seedu.giatros.model.account.Account;
-
+import seedu.giatros.model.patient.Patient;
 
 /**
  * An Immutable GiatrosBook that is serializable to JSON format.
@@ -25,8 +24,8 @@ public class JsonSerializableGiatrosBook {
 
     private static final Logger logger = LogsCenter.getLogger(JsonGiatrosBookStorage.class);
 
-    public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
-    public static final String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate username(s).";
+    public final static String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
+    public final static String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate username(s).";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
     private final List<JsonAdaptedAccount> accounts = new ArrayList<>();
