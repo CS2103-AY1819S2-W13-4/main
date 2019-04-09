@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import seedu.giatros.commons.core.LogsCenter;
 import seedu.giatros.commons.exceptions.IllegalValueException;
 import seedu.giatros.model.GiatrosBook;
 import seedu.giatros.model.ReadOnlyGiatrosBook;
@@ -27,8 +26,6 @@ public class JsonSerializableGiatrosBook {
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
     private final List<JsonAdaptedAccount> accounts = new ArrayList<>();
-    
-    private static final Logger logger = LogsCenter.getLogger(JsonGiatrosBookStorage.class);
 
     /**
      * Constructs a {@code JsonSerializableGiatrosBook} with the given patients.
