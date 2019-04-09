@@ -24,8 +24,8 @@ public class JsonSerializableGiatrosBook {
 
     private static final Logger logger = LogsCenter.getLogger(JsonGiatrosBookStorage.class);
 
-    public static final String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate username(s).";
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
+    public static final String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate username(s).";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
     private final List<JsonAdaptedAccount> accounts = new ArrayList<>();
