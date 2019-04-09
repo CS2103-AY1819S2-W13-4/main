@@ -14,7 +14,7 @@ import seedu.giatros.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path giatrosBookFilePath = Paths.get("" , "giatrosbook.json");
+    private Path giatrosBookFilePath = Paths.get("" , "data\\giatrosbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.

@@ -17,8 +17,8 @@ import seedu.giatros.ui.UiPart;
  */
 public class UsernameDisplay extends UiPart<Region> {
 
-    public static final String ACCOUNT_STATUS_USER = "Staff";
-    public static final String ACCOUNT_STATUS = "Welcome, %s";
+    private static final String ACCOUNT_STATUS_USER = "Guest";
+    private static final String ACCOUNT_STATUS = "%s";
 
     private static final Logger logger = LogsCenter.getLogger(UsernameDisplay.class);
     private static final String FXML = "UsernameDisplay.fxml";
@@ -46,5 +46,9 @@ public class UsernameDisplay extends UiPart<Region> {
     private void handleLogoutEvent(LogoutEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         setUsername(ACCOUNT_STATUS_USER);
+    }
+
+    public String getAccountStatusUser() {
+        return usernameDisplay.getText();
     }
 }

@@ -153,4 +153,7 @@ public interface Model {
      * Returns true if an account with the same identity as {@code Account} exists in the giatros book.
      */
     boolean hasAccount(Account account);
+
+    /** Returns an unmodifiable view of the filtered account list */
+    ObservableList<Account> getFilteredAccountList();
 }

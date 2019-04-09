@@ -6,6 +6,7 @@ import static seedu.giatros.logic.parser.CliSyntax.PREFIX_PASSWORD;
 
 import seedu.giatros.commons.core.EventsCenter;
 import seedu.giatros.commons.core.session.UserSession;
+import seedu.giatros.commons.events.ui.ToggleSidePanelVisibilityEvent;
 import seedu.giatros.commons.events.ui.accounts.LoginEvent;
 import seedu.giatros.logic.CommandHistory;
 import seedu.giatros.logic.commands.Command;
@@ -60,6 +61,7 @@ public class LoginCommand extends Command {
                 throw new CommandException(MESSAGE_WRONG_PASSWORD);
             }
             EventsCenter.getInstance().post(new LoginEvent(retrievedAccount));
+            EventsCenter.getInstance().post(new ToggleSidePanelVisibilityEvent(true));
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, retrievedAccount));
