@@ -172,6 +172,6 @@ public class GiatrosBook implements ReadOnlyGiatrosBook {
 
     @Override
     public int hashCode() {
-        return Objects.hash(accounts,patients);
+        return Objects.hash(accounts, patients);
     }
 }

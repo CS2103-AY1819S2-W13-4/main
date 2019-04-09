@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.giatros.commons.core.LogsCenter;
-import seedu.giatros.commons.core.session.UserSession;
 import seedu.giatros.commons.exceptions.IllegalValueException;
 import seedu.giatros.model.GiatrosBook;
 import seedu.giatros.model.ReadOnlyGiatrosBook;
@@ -25,8 +24,8 @@ public class JsonSerializableGiatrosBook {
 
     private static final Logger logger = LogsCenter.getLogger(JsonGiatrosBookStorage.class);
 
-    public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
     public static final String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate username(s).";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
     private final List<JsonAdaptedAccount> accounts = new ArrayList<>();
