@@ -13,8 +13,9 @@ import seedu.giatros.commons.core.LogsCenter;
 import seedu.giatros.commons.exceptions.IllegalValueException;
 import seedu.giatros.model.GiatrosBook;
 import seedu.giatros.model.ReadOnlyGiatrosBook;
-import seedu.giatros.model.account.Account;
 import seedu.giatros.model.patient.Patient;
+import seedu.giatros.model.account.Account;
+
 
 /**
  * An Immutable GiatrosBook that is serializable to JSON format.
