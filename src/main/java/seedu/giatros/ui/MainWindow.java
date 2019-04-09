@@ -13,11 +13,15 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.giatros.commons.core.GuiSettings;
 import seedu.giatros.commons.core.LogsCenter;
+import seedu.giatros.commons.events.ui.ToggleSidePanelVisibilityEvent;
 import seedu.giatros.logic.Logic;
 import seedu.giatros.logic.commands.CommandResult;
 import seedu.giatros.logic.commands.exceptions.CommandException;
 import seedu.giatros.logic.parser.exceptions.ParseException;
+import seedu.giatros.ui.account.AccountListPanel;
 import seedu.giatros.ui.account.UsernameDisplay;
+
+import com.google.common.eventbus.Subscribe;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
+    private AccountListPanel accountListPanel;
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -117,12 +122,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(logic.selectedPatientProperty());
+        browserPanel = new BrowserPanel();
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList(), logic.selectedPatientProperty(),
                 logic::setSelectedPatient);
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+        patientListPanelPlaceholder.setVisible(false);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -133,15 +139,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand, logic.getHistory());
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        accountListPanel = new AccountListPanel(logic.getFilteredAccountList());
         UsernameDisplay usernameDisplay = new UsernameDisplay();
-        // Centralize the width
-        usernameDisplay.getRoot().layoutXProperty().bind(usernameDisplayPlaceholder.widthProperty()
-                .subtract(usernameDisplay.getRoot().widthProperty())
-                .divide(2));
-        // Centralize the height
-        usernameDisplay.getRoot().layoutYProperty().bind(usernameDisplayPlaceholder.heightProperty()
-                .subtract(usernameDisplay.getRoot().heightProperty())
-                .divide(2));
         usernameDisplayPlaceholder.getChildren().add(usernameDisplay.getRoot());
     }
 
@@ -214,5 +213,11 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    @Subscribe
+    private void handleToggleSidePanelVisibilityEvent(ToggleSidePanelVisibilityEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        patientListPanelPlaceholder.setVisible(event.isVisible);
     }
 }

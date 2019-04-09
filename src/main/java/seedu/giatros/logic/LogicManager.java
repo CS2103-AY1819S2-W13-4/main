@@ -15,6 +15,7 @@ import seedu.giatros.logic.parser.GiatrosBookParser;
 import seedu.giatros.logic.parser.exceptions.ParseException;
 import seedu.giatros.model.Model;
 import seedu.giatros.model.ReadOnlyGiatrosBook;
+import seedu.giatros.model.account.Account;
 import seedu.giatros.model.patient.Patient;
 import seedu.giatros.storage.Storage;
 
@@ -104,5 +105,10 @@ public class LogicManager implements Logic {
     @Override
     public void setSelectedPatient(Patient patient) {
         model.setSelectedPatient(patient);
+    }
+
+    @Override
+    public ObservableList<Account> getFilteredAccountList() {
+        return model.getFilteredAccountList();
     }
 }

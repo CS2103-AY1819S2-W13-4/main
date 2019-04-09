@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.giatros.commons.core.EventsCenter;
 import seedu.giatros.commons.core.session.UserSession;
+import seedu.giatros.commons.events.ui.ToggleSidePanelVisibilityEvent;
 import seedu.giatros.commons.events.ui.accounts.LogoutEvent;
 import seedu.giatros.logic.CommandHistory;
 import seedu.giatros.logic.commands.Command;
@@ -34,6 +35,7 @@ public class LogoutCommand extends Command {
 
         model.resetGiatrosBookVersion();
         EventsCenter.getInstance().post(new LogoutEvent());
+        EventsCenter.getInstance().post(new ToggleSidePanelVisibilityEvent(false));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

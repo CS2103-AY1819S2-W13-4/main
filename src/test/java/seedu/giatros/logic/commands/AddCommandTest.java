@@ -94,6 +94,11 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
+        public ObservableList<Account> getFilteredAccountList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addAccount(Account account) {
             throw new AssertionError("This method should not be called.");
         }

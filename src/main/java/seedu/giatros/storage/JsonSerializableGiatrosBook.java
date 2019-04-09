@@ -2,12 +2,15 @@ package seedu.giatros.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import seedu.giatros.commons.core.LogsCenter;
+import seedu.giatros.commons.core.session.UserSession;
 import seedu.giatros.commons.exceptions.IllegalValueException;
 import seedu.giatros.model.GiatrosBook;
 import seedu.giatros.model.ReadOnlyGiatrosBook;
@@ -18,7 +21,9 @@ import seedu.giatros.model.patient.Patient;
  * An Immutable GiatrosBook that is serializable to JSON format.
  */
 @JsonRootName(value = "giatrosbook")
-class JsonSerializableGiatrosBook {
+public class JsonSerializableGiatrosBook {
+
+    private static final Logger logger = LogsCenter.getLogger(JsonGiatrosBookStorage.class);
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
     public static final String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate username(s).";
@@ -53,6 +58,7 @@ class JsonSerializableGiatrosBook {
      */
     public GiatrosBook toModelType() throws IllegalValueException {
         GiatrosBook giatrosBook = new GiatrosBook();
+
         for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
             Patient patient = jsonAdaptedPatient.toModelType();
             if (giatrosBook.hasPatient(patient)) {
@@ -67,6 +73,9 @@ class JsonSerializableGiatrosBook {
             }
             giatrosBook.addAccount(account);
         }
+
         return giatrosBook;
     }
+
+
 }

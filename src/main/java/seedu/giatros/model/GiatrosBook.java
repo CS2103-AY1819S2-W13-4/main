@@ -3,6 +3,7 @@ package seedu.giatros.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
@@ -165,13 +166,12 @@ public class GiatrosBook implements ReadOnlyGiatrosBook {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof GiatrosBook // instanceof handles nulls
-                && patients.equals(((GiatrosBook) other).patients));
+        return accounts.equals(((GiatrosBook) other).accounts)
+                && patients.equals(((GiatrosBook) other).patients);
     }
 
     @Override
     public int hashCode() {
-        return patients.hashCode();
+        return Objects.hash(accounts,patients);
     }
 }

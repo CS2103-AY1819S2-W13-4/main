@@ -9,7 +9,14 @@ import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import seedu.giatros.MainApp;
 import seedu.giatros.commons.core.LogsCenter;
@@ -20,8 +27,6 @@ import seedu.giatros.model.patient.Patient;
  */
 public class BrowserPanel extends UiPart<Region> {
 
-    public static final URL DEFAULT_PAGE =
-            requireNonNull(MainApp.class.getResource(FXML_FILE_FOLDER + "default.html"));
     public static final String SEARCH_PAGE_URL = "https://se-education.org/dummy-search-page/?name=";
 
     private static final String FXML = "BrowserPanel.fxml";
@@ -31,22 +36,17 @@ public class BrowserPanel extends UiPart<Region> {
     @FXML
     private WebView browser;
 
-    public BrowserPanel(ObservableValue<Patient> selectedPatient) {
+    @FXML
+    private VBox itemDetailPane;
+
+    public BrowserPanel() {
         super(FXML);
 
         // To prevent triggering events for typing inside the loaded Web page.
         getRoot().setOnKeyPressed(Event::consume);
 
-        // Load patient page when selected patient changes.
-        selectedPatient.addListener((observable, oldValue, newValue) -> {
-            if (newValue == null) {
-                loadDefaultPage();
-                return;
-            }
-            loadPatientPage(newValue);
-        });
-
         loadDefaultPage();
+        registerAsAnEventHandler(this);
     }
 
     private void loadPatientPage(Patient patient) {
@@ -61,7 +61,23 @@ public class BrowserPanel extends UiPart<Region> {
      * Loads a default HTML file with a background that matches the general theme.
      */
     private void loadDefaultPage() {
-        loadPage(DEFAULT_PAGE.toExternalForm());
+        //loadPage(DEFAULT_PAGE.toExternalForm());
+        URL dPage = MainApp.class.getResource("/images/Ui.png");
+
+        itemDetailPane.setBackground(
+                new Background(
+                        new BackgroundImage(
+                                new Image(dPage.toExternalForm()),
+                                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                                BackgroundPosition.CENTER, BackgroundSize.DEFAULT)
+                )
+        );
+        setItemVisibility(false);
     }
+
+    private void setItemVisibility(Boolean show) {
+        //nothing for now
+    }
+
 
 }

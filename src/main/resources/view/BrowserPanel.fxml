@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.web.WebView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml/1">
-  <WebView fx:id="browser"/>
-</StackPane>
+<VBox fx:id="itemDetailPane" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
+  <HBox alignment="CENTER" spacing="20">
+    <Label fx:id="name" wrapText="true" styleClass="label-header">
+      <font>
+        <Font name="System Bold" size="50.0" />
+      </font>
+    </Label>
+  </HBox>
+</VBox>

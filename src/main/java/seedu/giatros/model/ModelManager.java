@@ -10,11 +10,13 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.giatros.commons.core.GuiSettings;
 import seedu.giatros.commons.core.LogsCenter;
+import seedu.giatros.commons.events.ui.ToggleSidePanelVisibilityEvent;
 import seedu.giatros.model.account.Account;
 import seedu.giatros.model.patient.Patient;
 import seedu.giatros.model.patient.exceptions.PatientNotFoundException;
@@ -27,6 +29,7 @@ public class ModelManager implements Model {
 
     private final VersionedGiatrosBook versionedGiatrosBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<Account> filteredAccounts;
     private final FilteredList<Patient> filteredPatients;
     private final SimpleObjectProperty<Patient> selectedPatient = new SimpleObjectProperty<>();
 
@@ -43,6 +46,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(versionedGiatrosBook.getPatientList());
         filteredPatients.addListener(this::ensureSelectedPatientIsValid);
+        filteredAccounts = new FilteredList<>(versionedGiatrosBook.getAccountList());
     }
 
     public ModelManager() {
@@ -172,6 +176,11 @@ public class ModelManager implements Model {
     //=========== Accounts =================================================================================
 
     @Override
+    public ObservableList<Account> getFilteredAccountList() {
+        return FXCollections.unmodifiableObservableList(filteredAccounts);
+    }
+
+    @Override
     public void addAccount(Account account) {
         versionedGiatrosBook.addAccount(account);
     }
@@ -251,6 +260,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return versionedGiatrosBook.equals(other.versionedGiatrosBook)
                 && userPrefs.equals(other.userPrefs)
+                && filteredAccounts.equals(other.filteredAccounts)
                 && filteredPatients.equals(other.filteredPatients)
                 && Objects.equals(selectedPatient.get(), other.selectedPatient.get());
     }
