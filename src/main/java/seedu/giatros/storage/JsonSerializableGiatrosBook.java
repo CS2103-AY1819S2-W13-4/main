@@ -22,13 +22,13 @@ import seedu.giatros.model.patient.Patient;
 @JsonRootName(value = "giatrosbook")
 public class JsonSerializableGiatrosBook {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonGiatrosBookStorage.class);
-
-    public final static String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
-    public final static String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate username(s).";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
+    public static final String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate username(s).";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
     private final List<JsonAdaptedAccount> accounts = new ArrayList<>();
+    
+    private static final Logger logger = LogsCenter.getLogger(JsonGiatrosBookStorage.class);
 
     /**
      * Constructs a {@code JsonSerializableGiatrosBook} with the given patients.
