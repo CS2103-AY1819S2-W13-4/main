@@ -23,10 +23,12 @@
 <li><a href="#listing-entered-commands-code-history-code">3.8. Listing entered commands : <code>history</code></a></li>
 <li><a href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></li>
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.11. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.12. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.13. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.14. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#adding-allergy-to-a-patient-code-addall-code">3.11. Adding allergy to a patient: <code>addall</code></a></li>
+<li><a href="#removing-allergy-from-a-patient-code-remall-code">3.12. Removing allergy from a patient: <code>remall</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.13. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.14. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.15. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.16. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -478,28 +480,138 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.11. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="adding-allergy-to-a-patient-code-addall-code"><a class="link" href="#adding-allergy-to-a-patient-code-addall-code">3.11. Adding allergy to a patient: <code>addall</code></a></h3>
+<div class="paragraph">
+<p>Adds one or more allergies to an existing patient in Giatros.<br>
+Format: <code>addall INDEX y/ALLERGY [y/ALLERGY]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Allergy names should be alphanumeric, i.e. <code>ibuprofen</code>, <code>C6H6</code> are acceptable but <code>anti-inflammatory</code> is not acceptable.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds one or more allergies to the patient at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed patient list.
+The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Multiple allergies can be added at a time by separating the distinct allergies with distinct <code>y/</code> tags, e.g. <code>y/aspirin y/ibuprofen</code>.</p>
+</li>
+<li>
+<p>Allergies already associated with the patient will be ignored. For example, if the 1st patient is allergic to <code>aspirin</code>, <code>addall 1 y/aspirin</code>
+will not modify the allergy list while <code>addall 1 y/aspirin y/ibuprofen</code> will just add <code>ibuprofen</code> to the allergy list.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addall 1 y/ibuprofen</code><br>
+Adds the allergy <code>ibuprofen</code> to the 1st patient in the list.</p>
+</li>
+<li>
+<p><code>addall 3 y/aspirin y/amoxicillin</code><br>
+Adds two allergies, <code>aspirin</code> and <code>amoxicillin</code> to the 3rd patient in the list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-allergy-from-a-patient-code-remall-code"><a class="link" href="#removing-allergy-from-a-patient-code-remall-code">3.12. Removing allergy from a patient: <code>remall</code></a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Allergy names should be alphanumeric, i.e. <code>ibuprofen</code>, <code>C6H6</code> are acceptable but <code>anti-inflammatory</code> is not acceptable.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Removes one or more allergies to an existing patient in Giatros.<br>
+Format: <code>remall INDEX y/ALLERGY [y/ALLERGY]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Removes one or more allergies to the patient at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed patient list.
+The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Multiple allergies can be removed at a time by separating the distinct allergies with distinct <code>y/</code> tags, e.g. <code>y/aspirin y/ibuprofen</code>.</p>
+</li>
+<li>
+<p>Allergies not already associated with the patient will be ignored. For example, if the 1st patient is allergic to <code>aspirin</code>, <code>addall 1 y/ibuprofen</code>
+will not modify the allergy list while <code>addall 1 y/aspirin y/ibuprofen</code> will just remove <code>aspirin</code> from the allergy list.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>remall 1 y/ibuprofen</code><br>
+Removes the allergy <code>ibuprofen</code> from the 1st patient in the list.</p>
+</li>
+<li>
+<p><code>remall 3 y/aspirin y/amoxicillin</code><br>
+Removes two allergies, <code>aspirin</code> and <code>amoxicillin</code> from the 3rd patient in the list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.13. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from Giatros.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.12. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.14. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.13. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.15. Saving the data</a></h3>
 <div class="paragraph">
 <p>Giatros data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.14. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.16. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
@@ -561,4 +673,4 @@ e.g.<code>select 2</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-11 10:35:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-11 13:53:27 UTC</div></div></div></body></html>
