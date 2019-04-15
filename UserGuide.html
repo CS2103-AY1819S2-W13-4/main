@@ -37,6 +37,7 @@
 <li><a href="#clearing-all-entries-code-clear-code">4.15. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">4.16. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">4.17. Saving the data</a></li>
+<li><a href="#exporting-the-data-code-export-code">4.18. Exporting the data <code>export</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">5. FAQ</a></li>
@@ -833,6 +834,29 @@ Format: <code>exit</code></p>
 There is no need to save manually.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="exporting-the-data-code-export-code"><a class="link" href="#exporting-the-data-code-export-code">4.18. Exporting the data <code>export</code></a></h3>
+<div class="paragraph">
+<p>Exports the giatros book to a cvs file saved on the local disk at the specified <code>DESTINATION</code>.<br>
+Format: <code>export</code> [d/<code>DESTINATION</code>]</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DESTINATION</code> can end with an extension of .csv or end as a path to a directory.<br></p>
+</li>
+<li>
+<p>Existing data file at <code>DESTINATION</code> will be overwritten.<br></p>
+</li>
+<li>
+<p>A table view of the exported data will appear on execution of command.</p>
+</li>
+<li>
+<p>.csv files can be opened and edited in Microsoft Excel</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -923,8 +947,12 @@ e.g. <code>addall 1 y/ibuprofen</code></p>
 <p><strong>Remove allergy</strong> : <code>remall INDEX y/ALLERGY [y/ALLERGY]</code>
 e.g. <code>remall 1 y/aspirin y/paracetamol</code></p>
 </li>
+<li>
+<p><strong>Export</strong> : <code>export [d/DESTINATION]</code>
+e.g. <code>export d/~/Desktop</code></p>
+</li>
 </ul>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:44:51 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 17:10:46 UTC</div></div></div></body></html>
