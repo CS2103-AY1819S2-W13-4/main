@@ -827,20 +827,74 @@ This feature makes use of this behaviour of a HashSet to allow user to add or re
 <p>Step 5. The system will locate the first patient in the patient list, and adds the non-existing allergy to the unique list of patient allergy.</p>
 </div>
 <div class="paragraph">
-<p>The process is described in sequence diagram shown below:
-The following sequence diagram shows how the add allergy operation works:</p>
+<p>The following sequence diagram shows how the add allergy operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/AddAllergySequenceDiagram.png" alt="AddAllergySequenceDiagram" width="800">
 </div>
 </div>
+<div class="paragraph">
+<p>The remove allergy mechanism behaves similarly to the add allergy mechanism. Below is the example usage scenario.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application and logs into the STAFF account.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. Assuming that the patient list is not empty, the user executes <code>remall 1 y/existingallergy</code> to remove existingallergy to the first patient in the list.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. This command in string format will be passed to the AddallCommandParser, which will check if the command format is valid.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. Since this command has a valid format, the system will create a new AddallCommand object, which will be executed.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. The system will locate the first patient in the patient list, and removes the existing allergy from the unique list of patient allergy.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the remove allergy operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/RemoveAllergySequenceDiagram.png" alt="RemoveAllergySequenceDiagram" width="800">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-consideration"><a class="link" href="#design-consideration">3.2.2. Design Consideration</a></h4>
 <div class="sect4">
-<h5 id="aspect"><a class="link" href="#aspect">Aspect:</a></h5>
-
+<h5 id="aspect-data-structure-to-support-the-add-remove-allergy-commands"><a class="link" href="#aspect-data-structure-to-support-the-add-remove-allergy-commands">Aspect: Data structure to support the add/remove allergy commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use a HashSet to store the list of allergy.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Supports the addition and removal of allergy. Additionally, by storing unique list of allergy, we minimise the risk of inputting duplicate allergy by accident.</p>
+</li>
+<li>
+<p>Cons: Slightly harder to implement as compared to a String representation.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use a String to store the list of allergy.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement when compared to using a HashSet.</p>
+</li>
+<li>
+<p>Cons: Every time we add or remove an allergy, we need to retype the whole lists of allergies because the previous String will simply be overwritten by the new String.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -914,7 +968,7 @@ The following sequence diagram shows how the add appointment operation works:</p
 <div class="sect3">
 <h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.3.2. Design Consideration</a></h4>
 <div class="sect4">
-<h5 id="aspect-2"><a class="link" href="#aspect-2">Aspect:</a></h5>
+<h5 id="aspect"><a class="link" href="#aspect">Aspect:</a></h5>
 
 </div>
 </div>
@@ -2295,4 +2349,4 @@ Expected: An error will occur. No commands to redo.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:10:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 13:30:08 UTC</div></div></div></body></html>
