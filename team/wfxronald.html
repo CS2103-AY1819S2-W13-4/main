@@ -769,6 +769,150 @@ This feature makes use of this behaviour of a HashSet to allow user to add or re
 </li>
 </ul>
 </div>
+<h3 id="use-case-add-appointment-to-patient" class="discrete">Use case: Add appointment to patient</h3>
+<div class="paragraph">
+<p>Precondition: Current list of patients is not empty, and user is logged in to a staff account.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Receptionist requests to list all patients in the database.</p>
+</li>
+<li>
+<p>System shows a list of patients registered in the database.</p>
+</li>
+<li>
+<p>Receptionists adds some appointment to a specific patient in the list.</p>
+</li>
+<li>
+<p>System adds the appointment to the patient.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. System shows an error message, prompting for a valid index.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b. The appointment already exists in the patient.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. System shows an error message, alerting the receptionist that such appointment already exists in the patient.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3c. Receptionist inputs multiple appointment to be added, some of them already associated with the patient.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3c1. System will ignore appointment that is already associated to the patient.</p>
+<div class="paragraph">
+<p>Use case resumes at step 4.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-remove-appointment-from-patient" class="discrete">Use case: Remove appointment from patient</h3>
+<div class="paragraph">
+<p>Precondition: Current list of patients is not empty and user is logged in to a staff account.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Receptionist requests to list all patients in the database.</p>
+</li>
+<li>
+<p>System shows a list of patients registered in the database.</p>
+</li>
+<li>
+<p>Receptionists removes some appointment from a specific patient in the list.</p>
+</li>
+<li>
+<p>System removes the appointment from the patient.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. System shows an error message, prompting for a valid index.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b. The receptionist attempts to remove an appointment that does not exist in the patient.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. System shows an error message, alerting the receptionist that such appointment does not exist in the patient.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3c. Receptionist inputs multiple appointment to be removed, some of them not associated with the patient.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3c1. System will ignore appointment that is not associated to the patient.</p>
+<div class="paragraph">
+<p>Use case resumes at step 4.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <h3 id="use-case-undo-an-action" class="discrete">Use case: Undo an action</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -1026,6 +1170,80 @@ Expected: Remove allergy successful. Aspirin is ignored, since it is not associa
 </div>
 </div>
 <div class="sect2">
+<h3 id="adding-appointment-to-a-patient"><a class="link" href="#adding-appointment-to-a-patient">Adding appointment to a patient</a></h3>
+<div class="paragraph">
+<p>Prerequisites: List all patients using the <code>list</code> command. Multiple patients in the list.<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test case: <code>addapt</code>, <code>addapt 1</code><br>
+Expected: An error will occur. Invalid command format.</p>
+</li>
+<li>
+<p>Test case: <code>addapt 1 apt/</code><br>
+Expected: An error will occur. An error will occur. Appointment needs to follow the one of the valid formats: 'yyyy-MM-dd HH:mm:ss', 'yyyy-MM-dd HH:mm', 'yyyy-MM-dd HH' . An empty string is not a valid input.</p>
+</li>
+<li>
+<p>Test case: <code>addapt 1 apt/2019-04-01 14:30</code><br>
+Expected: An error will occur. The appointment is already associated to the first patient.</p>
+</li>
+<li>
+<p>Test case: <code>addapt 1 apt/2019-02-29 14:30</code><br>
+Expected: An error will occur. The 29th of Feb doesn&#8217;t exist for 2019.</p>
+</li>
+<li>
+<p>Test case: <code>addapt 1 apt/2019-04-01 15:00</code><br>
+Expected: Add appointment successful. The first patient is now associated with 2019-04-01 15:00 appointment.</p>
+</li>
+<li>
+<p>Test case: <code>addapt 1 apt/2019-04-01 14:30 apt/2019-04-01 18:00</code><br>
+Expected: Add appointment successful. The first appointment is ignored, since it is already associated to the first patient. Aspirin appointment is added.</p>
+<div class="literalblock">
+<div class="content">
+<pre>See AppointmentTests.java for other examples for other valid/invalid appointments.</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-appointment-from-a-patient"><a class="link" href="#removing-appointment-from-a-patient">Removing appointment from a patient</a></h3>
+<div class="paragraph">
+<p>Prerequisites: List all patients using the <code>list</code> command. Multiple patients in the list.<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test case: <code>remapt</code>, <code>remapt 1</code><br>
+Expected: An error will occur. Invalid command format.</p>
+</li>
+<li>
+<p>Test case: <code>remapt 1 apt/</code><br>
+Expected: An error will occur. Appointment needs to follow the one of the valid formats: 'yyyy-MM-dd HH:mm:ss', 'yyyy-MM-dd HH:mm', 'yyyy-MM-dd HH' . An empty string is not a valid input.</p>
+</li>
+<li>
+<p>Test case: <code>remapt 1 apt/2019-12-01 13:30</code><br>
+Expected: An error will occur. Cannot find the appointment in the list of appointments for the first patient.</p>
+</li>
+<li>
+<p>Test case: <code>remapt 1 apt/2019-04-01 14:30</code><br>
+Expected: Remove appointment successful. The first patient is now not associated with 2019-04-01 14:30 appointment anymore.</p>
+</li>
+<li>
+<p>Test case: <code>remapt 2 apt/2019-04-01 14:30 apt/2019-04-01 18:00</code><br>
+Expected: Remove appointment successful. The second appointment is ignored, since it is not associated to the second patient. The first appointment is removed.</p>
+<div class="literalblock">
+<div class="content">
+<pre>See AppointmentTests.java for other examples for other invalid appointments.</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
 <h3 id="selecting-a-patient"><a class="link" href="#selecting-a-patient">Selecting a patient</a></h3>
 <div class="paragraph">
 <p>Prerequisites: List some patients using the <code>list</code> or <code>find</code> command. At least one patient in the list.<br></p>
@@ -1117,4 +1335,4 @@ Expected: An error will occur. No commands to redo.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:47:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:18:45 UTC</div></div></div></body></html>
