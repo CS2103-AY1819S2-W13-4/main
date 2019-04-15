@@ -13,9 +13,11 @@
 <p>Hi! I am Chua Eng Soon, a Computer Science undergraduate in National University of Singapore. Giatros is my first software engineering project under CS2103.</p>
 </div>
 <div class="paragraph">
-<p>An introduction is as such:
-Giatros is a desktop patient record application used to keep track of patient data in a hospital. Written in Java, the user interacts with it using a CLI, and it has a GUI created with JavaFX.
-With the authentication and user management components, these restrict people without proper credentials to view/edit information.</p>
+<p>An introduction is as such:</p>
+</div>
+<div class="paragraph">
+<p>Giatros is a desktop patient record application that allows staff to keep track of patient data in a hospital. Written in Java, the user interacts with it using a CLI, and it has a GUI created with JavaFX.
+With the authentication and user management components, these restrict people without proper credentials from viewing or editing information.</p>
 </div>
 </div>
 </div>
@@ -25,18 +27,17 @@ With the authentication and user management components, these restrict people wi
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: Added <strong>the ability to add/remove allergies</strong></p>
+<p><strong>Major enhancement</strong>: Added the <strong>User Authentication feature</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Allows the user to add allergies to an existing patient or remove allergies from an existing patient.</p>
+<p>What it does: Prevents user without proper credentials from executing role-restricted command and viewing of sensitive information.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because the current edit command will overwrite the existing allergies whenever new allergies are specified. The <code>addall</code> and <code>remall</code> commands allow user to add and
-remove allergies from the existing list associated to a patient.</p>
+<p>Justification: This feature provides <strong>data protection</strong> for sensitive information from user without proper credential.</p>
 </li>
 <li>
-<p>Highlights: This enhancement extends the ability of the existing <code>add</code> and <code>edit</code> commands, which allows user to create a patient with allergies displayed as colourful tags.</p>
+<p>Highlights: 'Login', 'Logout' and 'Register' commands are available to faciliate the <strong>User Authentication feature</strong>.</p>
 </li>
 </ul>
 </div>
@@ -46,10 +47,13 @@ remove allergies from the existing list associated to a patient.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Added colours to the various allergies for easier identification.</p>
+<p>Change the ab4 logo to Giatros</p>
 </li>
 <li>
-<p>Changed the UI to show the search result of the first allergy when the patient is selected.</p>
+<p>Change the UI to show the username of the current user at the top right corner of the gui.</p>
+</li>
+<li>
+<p>Added sample data for accounts and patients</p>
 </li>
 </ul>
 </div>
@@ -72,31 +76,20 @@ remove allergies from the existing list associated to a patient.</p>
 </div>
 </li>
 <li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><em>{to be added}</em></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
 <p>Documentation:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><em>{to be added}</em></p>
-</li>
-</ul>
-</div>
+<p>Updated the Product Website</p>
 </li>
 <li>
-<p>Community:</p>
-<div class="ulist">
-<ul>
+<p>Updated the user guide</p>
+</li>
 <li>
-<p><em>{to be added}</em></p>
+<p>Updated the developed guide</p>
+</li>
+<li>
+<p>Updated the portfolio page</p>
 </li>
 </ul>
 </div>
@@ -106,10 +99,16 @@ remove allergies from the existing list associated to a patient.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Created an organization repository for the team on Github
-Integrated a Github plugin (TravisCI) to the team repo
-Integrated a Github plugin (Appveyor) to the team repo
-Integrated a Github plugin (Coveralls) to the team repo</p>
+<p>Created an organization repository for the team on Github</p>
+</li>
+<li>
+<p>Integrated a Github plugin (TravisCI) to the team repo</p>
+</li>
+<li>
+<p>Integrated a Github plugin (Appveyor) to the team repo</p>
+</li>
+<li>
+<p>Integrated a Github plugin (Coveralls) to the team repo</p>
 </li>
 </ul>
 </div>
@@ -134,11 +133,19 @@ Integrated a Github plugin (Coveralls) to the team repo</p>
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="adding-allergy-to-a-patient-code-addall-code"><a class="link" href="#adding-allergy-to-a-patient-code-addall-code">Adding allergy to a patient: <code>addall</code></a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Authentication"><a class="link" href="#Authentication">User Authentication Features</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Adds one or more allergies to an existing patient in Giatros.<br>
-Format: <code>addall INDEX y/ALLERGY [y/ALLERGY]&#8230;&#8203;</code></p>
+<p>When the application is first opened, it will be in Guest mode and no command can be executed except the <code>login</code> command.</p>
+</div>
+<div class="sect2">
+<h3 id="logging-in-to-the-application-code-login-code"><a class="link" href="#logging-in-to-the-application-code-login-code">Logging in to the application : <code>login</code></a></h3>
+<div class="paragraph">
+<p>Allows a guest to login and start using the application.<br>
+Format: <code>login id/USERNAME pw/PASSWORD</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -147,50 +154,51 @@ Format: <code>addall INDEX y/ALLERGY [y/ALLERGY]&#8230;&#8203;</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>Allergy names should be alphanumeric, i.e. <code>ibuprofen</code>, <code>C6H6</code> are acceptable but <code>anti-inflammatory</code> is not acceptable.</p>
-</div>
+A dummy staff account with sample data is available by default. Username: <code>STAFF</code> and Password: <code>1122qq</code>
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-out-of-the-application-code-logout-code"><a class="link" href="#logging-out-of-the-application-code-logout-code">Logging out of the application : <code>logout</code></a></h3>
+<div class="paragraph">
+<p>Allows the user to logout when done with the session.<br>
+Format: <code>logout</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can only logout when you have been logged in.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="registering-a-new-staff-to-use-the-application-code-register-code"><a class="link" href="#registering-a-new-staff-to-use-the-application-code-register-code">Registering a new staff to use the application : <code>register</code></a></h3>
+<div class="paragraph">
+<p>Allows the manager to create new staff account using which new staff can log into the application.<br>
+Format: <code>register id/USERNAME pw/PASSWORD n/NAME</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Adds one or more allergies to the patient at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed patient list.
-The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Only the manager can create new staff accounts. A normal staff will not be able to execute the <code>register</code> command</p>
 </li>
 <li>
-<p>Multiple allergies can be added at a time by separating the distinct allergies with distinct <code>y/</code> tags, e.g. <code>y/aspirin y/ibuprofen</code>.</p>
-</li>
-<li>
-<p>Allergies already associated with the patient will be ignored. For example, if the 1st patient is allergic to <code>aspirin</code>, <code>addall 1 y/aspirin</code>
-will not modify the allergy list while <code>addall 1 y/aspirin y/ibuprofen</code> will just add <code>ibuprofen</code> to the allergy list.</p>
+<p>The username <code>manager</code> is restricted. There can only be one manager.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addall 1 y/ibuprofen</code><br>
-Adds the allergy <code>ibuprofen</code> to the 1st patient in the list.</p>
-</li>
-<li>
-<p><code>addall 3 y/aspirin y/amoxicillin</code><br>
-Adds two allergies, <code>aspirin</code> and <code>amoxicillin</code> to the 3rd patient in the list.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="removing-allergy-from-a-patient-code-remall-code"><a class="link" href="#removing-allergy-from-a-patient-code-remall-code">Removing allergy from a patient: <code>remall</code></a></h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -198,50 +206,10 @@ Adds two allergies, <code>aspirin</code> and <code>amoxicillin</code> to the 3rd
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>Allergy names should be alphanumeric, i.e. <code>ibuprofen</code>, <code>C6H6</code> are acceptable but <code>anti-inflammatory</code> is not acceptable.</p>
-</div>
+A dummy manager account is available by default. Username: <code>MANAGER</code> and Password: <code>1122qq</code>
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Removes one or more allergies to an existing patient in Giatros.<br>
-Format: <code>remall INDEX y/ALLERGY [y/ALLERGY]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Removes one or more allergies to the patient at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed patient list.
-The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>Multiple allergies can be removed at a time by separating the distinct allergies with distinct <code>y/</code> tags, e.g. <code>y/aspirin y/ibuprofen</code>.</p>
-</li>
-<li>
-<p>Allergies not already associated with the patient will be ignored. For example, if the 1st patient is allergic to <code>aspirin</code>, <code>remall 1 y/ibuprofen</code>
-will not modify the allergy list while <code>remall 1 y/aspirin y/ibuprofen</code> will just remove <code>aspirin</code> from the allergy list.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>remall 1 y/ibuprofen</code><br>
-Removes the allergy <code>ibuprofen</code> from the 1st patient in the list.</p>
-</li>
-<li>
-<p><code>remall 3 y/aspirin y/amoxicillin</code><br>
-Removes two allergies, <code>aspirin</code> and <code>amoxicillin</code> from the 3rd patient in the list.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -259,8 +227,134 @@ Removes two allergies, <code>aspirin</code> and <code>amoxicillin</code> from th
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="user-authentication-feature"><a class="link" href="#user-authentication-feature">User authentication feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p><em>{to be added}</em></p>
+<p>The user account mechanism is facilitated by <code>GiatrosBook</code>. Additionally, it implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>GiatrosBook#addAccount(Account)</code>&#8201;&#8212;&#8201;Saves the new account.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#getAccount(Account)</code>. The following commands will
+invoke the aforementioned operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Command#LoginCommand()</code>&#8201;&#8212;&#8201;Invokes <code>Model#getAccount(Account)</code>.</p>
+</li>
+<li>
+<p><code>Command#RegisterCommand()</code>&#8201;&#8212;&#8201;Invokes <code>Model#addAccount(Account)</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below are usage  scenarios and how each of the command and its respective operations behave at each
+step which involves two components, <code>Logic</code> which is responsible for parsing the user input and <code>Model</code> which is
+responsible for manipulating the list, if necessary. Both components are extended by <code>LogicManager</code> and
+<code>ModelManager</code> respectively.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>register</code> command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RegisterSequenceDiagram.png" alt="RegisterSequenceDiagram" width="800">
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:35:38 UTC</div></div></div></body></html>
+<div class="paragraph">
+<p><em>Figure 4.2.1.1: Sequence diagram to illustrate component interactions for the <code>register</code> command</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>We assume the user is already logged in to an account with appropriate privilege level (e.g. Administrator)</p>
+</li>
+<li>
+<p>If the username already exists, a warning message will be shown to the user to select another username</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 1. The user executes <code>register id/ces pw/1122qq n/Chua Eng Soon</code> command to create a new user account.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. <code>LogicManager</code> invokes the <code>GiatrosBookParser#parseCommand()</code> method which takes in the user input
+as arguments.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. When the command is parsed, the <code>Command#RegisterCommand()</code> will be created which is returned to the
+<code>LogicManager</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. <code>LogicManager</code> invokes the <code>execute()</code> method of the <code>Command#RegisterCommand()</code>, <code>rc</code> which is instantiated in
+Step 3. The <code>Model</code> component will be involved as the <code>Command#RegisterCommand()</code> invokes a request to add the account
+into the storage by calling <code>Model#addAccount(Account)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 5: The new account is added into the storage. Then, a <code>CommandResult</code> is generated and returned to
+<code>LogicManager</code> which is used to display the result to the user.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>login</code> command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/LoginSequenceDiagram.png" alt="LoginSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.2.1.2: Sequence diagram to illustrate component interactions for the <code>login</code> command</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We assume the user will enter the correct password. Otherwise, warning message will be shown to the user to re-enter
+the credential
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 1. The user executes <code>login id/ces pw/1122qq</code> command to login to an existing user account.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. <code>LogicManager</code> invokes the <code>GiatrosBookParser#parseCommand()</code> method which takes in the user input
+as arguments.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. When the command is parsed, the <code>Command#LoginCommand()</code> will be created which is returned to the
+<code>LogicManager</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. <code>LogicManager</code> invokes the <code>execute()</code> method of the <code>Command#LoginCommand()</code>, <code>lc</code> which is instantiated in
+Step 3. The <code>Model</code> component will be involved as the <code>Command#LoginCommand()</code> invokes a request to retrieve an account
+based on the username. If it exists, the account will be retrieved and the password hash will be compared. If it
+matches, then the credential is valid and the user is authenticated.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:44:51 UTC</div></div></div></body></html>
