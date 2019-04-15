@@ -30,7 +30,7 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
+<li><a href="#add-remove-allergy-feature">3.2. Add/Remove Allergy Feature</a></li>
 <li><a href="#logging">3.3. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
 </ul>
@@ -67,12 +67,18 @@
 <li><a href="#use-cases">Appendix C: Use Cases</a></li>
 <li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
 <li><a href="#glossary">Appendix E: Glossary</a></li>
-<li><a href="#product-survey">Appendix F: Product Survey</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
+<li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
+<li><a href="#logging-into-the-application">F.2. Logging into the application</a></li>
+<li><a href="#adding-a-patient">F.3. Adding a patient</a></li>
+<li><a href="#deleting-a-patient">F.4. Deleting a patient</a></li>
+<li><a href="#editing-a-patient">F.5. Editing a patient</a></li>
+<li><a href="#adding-allergy-to-a-patient">F.6. Adding allergy to a patient</a></li>
+<li><a href="#removing-allergy-from-a-patient">F.7. Removing allergy from a patient</a></li>
+<li><a href="#selecting-a-patient">F.8. Selecting a patient</a></li>
+<li><a href="#undoing-an-action">F.9. Undoing an action</a></li>
+<li><a href="#redoing-an-action">F.10. Redoing an action</a></li>
 </ul>
 </li>
 </ul>
@@ -763,9 +769,78 @@ If the <code>currentStatePointer</code> is at index <code>giatrosBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="add-remove-allergy-feature"><a class="link" href="#add-remove-allergy-feature">3.2. Add/Remove Allergy Feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
+<p>The add and remove allergy feature is implemented to extend the functionality of <code>Allergy</code> tags.
+Currently, the <code>edit</code> command will overwrite the existing <code>Allergy</code> tags if user attempts to edit the existing <code>Allergy</code>.
+With the <code>addall</code> and <code>remall</code> command, it is now possible to add or remove a single or multiple allergies associated with a patient.</p>
+</div>
+<div class="paragraph">
+<p>The functionality of the classes related to <code>addall</code> and <code>remall</code> are listed below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddallCommandParser</code> and <code>RemallCommandParser</code>&#8201;&#8212;&#8201;Reads the user input and create <code>AddallCommand</code> and <code>RemallCommand</code> object respectively.</p>
+</li>
+<li>
+<p><code>AddallCommand</code> and <code>RemallCommand</code>&#8201;&#8212;&#8201;When executed, the command will result in the addition or removal of a single or multiple allergies.</p>
+</li>
+<li>
+<p><code>Allergy</code>&#8201;&#8212;&#8201;An object that models allergy. It contains a String describing the name of the allergy.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A patient&#8217;s <code>Allergy</code> is stored in a Java HashSet, which stores only unique <code>Allergy</code> object.
+This feature makes use of this behaviour of a HashSet to allow user to add or remove allergies from the patient.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addall</code> command uses the <code>.addAll()</code> method, which takes in a set of <code>Allergy</code> objects and add them in if they are not inside the set already.</p>
+</li>
+<li>
+<p><code>remall</code> command uses the <code>.remAll()</code> method, which takes in a set of <code>Allergy</code> objects and remove them if they are actually inside in the set.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the add allergy mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application and logs into the STAFF account.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. Assuming that the patient list is not empty, the user executes <code>addall 1 y/newallergy</code> to add newallergy to the first patient in the list.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. This command in string format will be passed to the AddallCommandParser, which will check if the command format is valid.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. Since this command has a valid format, the system will create a new AddallCommand object, which will be executed.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. The system will locate the first patient in the patient list, and adds the non-existing allergy to the unique list of patient allergy.</p>
+</div>
+<div class="paragraph">
+<p>The process is described in sequence diagram shown below:
+The following sequence diagram shows how the add allergy operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddAllergySequenceDiagram.png" alt="AddAllergySequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.2.2. Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect"><a class="link" href="#aspect">Aspect:</a></h5>
+
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1347,9 +1422,6 @@ the various parties involved in a hospital, including hospital staffs and patien
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><em>{More listed in our Github issues}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1365,19 +1437,10 @@ the various parties involved in a hospital, including hospital staffs and patien
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Receptionist encounters a new patient.</p>
+<p>Receptionist inputs to add a new patient into the record.</p>
 </li>
 <li>
-<p>Receptionist checks whether the new patient is registered in the system.</p>
-</li>
-<li>
-<p>Receptionist requests for the patient’s personal data.</p>
-</li>
-<li>
-<p>Receptionist adds the patient into the system.</p>
-</li>
-<li>
-<p>Giatros shows a message when addition of patient is successful.</p>
+<p>System adds patient details into the database.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1390,13 +1453,26 @@ the various parties involved in a hospital, including hospital staffs and patien
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a. The receptionist did not input data in the specified format.</p>
+<p>1a. The receptionist did not input data in the specified format.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a1. Giatros shows an error message, along with a hint on how to input the data in the right format</p>
+<p>1a1. System shows an error message, along with a hint on how to input the data in the right format.</p>
 <div class="paragraph">
-<p>Use case resumes at step 4.</p>
+<p>Use case resumes at step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1b. The receptionist input a patient that has already existed in the database.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. System shows an error message, alerting the receptionist that such patient already exists in the database.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 </li>
 </ul>
@@ -1414,13 +1490,13 @@ the various parties involved in a hospital, including hospital staffs and patien
 <p>Receptionist requests to list all patients in the database.</p>
 </li>
 <li>
-<p>Giatros shows a list of patients registered in the database.</p>
+<p>System shows a list of patients registered in the database.</p>
 </li>
 <li>
-<p>Receptionist requests to delete a specific person in the list.</p>
+<p>Receptionist requests to delete a specific patient in the list.</p>
 </li>
 <li>
-<p>Giatros deletes the person.</p>
+<p>System deletes the patient.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1443,7 +1519,7 @@ the various parties involved in a hospital, including hospital staffs and patien
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. Giatros shows an error message, prompting for a valid index.</p>
+<p>3a1. System shows an error message, prompting for a valid index.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
@@ -1453,8 +1529,309 @@ the various parties involved in a hospital, including hospital staffs and patien
 </li>
 </ul>
 </div>
+<h3 id="use-case-edit-patient" class="discrete">Use case: Edit patient</h3>
 <div class="paragraph">
-<p><em>{More to be added}</em></p>
+<p>Precondition: Current list of patients is not empty.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Receptionist requests to list all patients in the database.</p>
+</li>
+<li>
+<p>System shows a list of patients registered in the database.</p>
+</li>
+<li>
+<p>Receptionists edits the details of a specific patient in the list.</p>
+</li>
+<li>
+<p>System edits the details of the patient.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. System shows an error message, prompting for a valid index.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b. The receptionist did not input any field to edit.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. System shows an error message, prompting for at least one field to be edited.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-add-allergy-to-patient" class="discrete">Use case: Add allergy to patient</h3>
+<div class="paragraph">
+<p>Precondition: Current list of patients is not empty.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Receptionist requests to list all patients in the database.</p>
+</li>
+<li>
+<p>System shows a list of patients registered in the database.</p>
+</li>
+<li>
+<p>Receptionists adds some allergy to a specific patient in the list.</p>
+</li>
+<li>
+<p>System adds the allergy to the patient.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. System shows an error message, prompting for a valid index.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b. The allergy already exists in the patient.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. System shows an error message, alerting the receptionist that such allergy already exists in the patient.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3c. Receptionist inputs multiple allergy to be added, some of them already associated with the patient.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3c1. System will ignore allergy that is already associated to the patient.</p>
+<div class="paragraph">
+<p>Use case resumes at step 4.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-remove-allergy-from-patient" class="discrete">Use case: Remove allergy from patient</h3>
+<div class="paragraph">
+<p>Precondition: Current list of patients is not empty.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Receptionist requests to list all patients in the database.</p>
+</li>
+<li>
+<p>System shows a list of patients registered in the database.</p>
+</li>
+<li>
+<p>Receptionists removes some allergy from a specific patient in the list.</p>
+</li>
+<li>
+<p>System removes the allergy from the patient.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. System shows an error message, prompting for a valid index.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b. The receptionist attempts to remove an allergy that does not exist in the patient.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. System shows an error message, alerting the receptionist that such allergy does not exist in the patient.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3c. Receptionist inputs multiple allergy to be removed, some of them not associated with the patient.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3c1. System will ignore allergy that is not associated to the patient.</p>
+<div class="paragraph">
+<p>Use case resumes at step 4.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-undo-an-action" class="discrete">Use case: Undo an action</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Receptionist executes a command that changes the giatros book state.</p>
+</li>
+<li>
+<p>System commits the change made by receptionist into a new giatros book state.</p>
+</li>
+<li>
+<p>Receptionist decides to undo the action.</p>
+</li>
+<li>
+<p>System reverts the change by returning to the previous giatros book state.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. Command execution fails due to invalid format.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. System shows an error message, along with a hint on how to input the data in the right format.</p>
+</li>
+<li>
+<p>1a2. System does not commit into a new state as there is no change yet, so there is no command to undo if the user insists on undoing.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-redo-an-action" class="discrete">Use case: Redo an action</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Receptionist executes a command that changes the giatros book state.</p>
+</li>
+<li>
+<p>System commits the change made by receptionist into a new giatros book state.</p>
+</li>
+<li>
+<p>Receptionist decides to undo the action.</p>
+</li>
+<li>
+<p>System reverts the change by returning to the previous giatros book state.</p>
+</li>
+<li>
+<p>Receptionist decides to redo the action.</p>
+</li>
+<li>
+<p>System reverts the undo by going to the next giatros book state.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. Command execution fails due to invalid format.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. System shows an error message, along with a hint on how to input the data in the right format.</p>
+</li>
+<li>
+<p>1a2. System does not commit into a new state as there is no change yet, so there is no command to undo if the user insists on undoing.</p>
+</li>
+<li>
+<p>1a3. Since there is no commands to undo, the system will show an error message if redo is executed.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1470,9 +1847,6 @@ the various parties involved in a hospital, including hospital staffs and patien
 <p>Should be able to store millions of patients’ information without affecting the performance of the system.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -1490,44 +1864,7 @@ the various parties involved in a hospital, including hospital staffs and patien
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Product Name</strong></p>
-</div>
-<div class="paragraph">
-<p>Author: &#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>Pros:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Cons:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
@@ -1545,7 +1882,7 @@ These instructions only provide a starting point for testers to work on; testers
 </table>
 </div>
 <div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">F.1. Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1578,31 +1915,124 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Shutdown</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Test case: <code>exit</code><br>
+Expected: Exits the application and closes the GUI.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-into-the-application"><a class="link" href="#logging-into-the-application">F.2. Logging into the application</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Using the guest account to use the application</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>list</code>, <code>clear</code>, <code>edit 1 n/Try to Change Name</code>, etc<br>
+Expected: An error will occur. Need to be logged in to execute these commands.</p>
+</li>
+<li>
+<p>Test case: <code>exit</code><br>
+Expected: Exits the application. A guest should be able to exit.</p>
+</li>
+<li>
+<p>Test case: <code>login id/staff pw/1122qq</code>, <code>login id/MYUSER pq/1122qq</code>, <code>login id/STAFF pq/1122ww</code>, <code>login id/STAFF pw/1122q</code>, etc<br>
+Expected: Login failed. Incorrect username and/or password.</p>
+</li>
+<li>
+<p>Test case: <code>login id/STAFF pw/1122qq</code>
+Expected: Login successful. Can now execute command as a staff.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Using the staff account to use the application&#8201;&#8212;&#8201;should be able to execute all the commands below, except for <code>register</code></p>
+</li>
+<li>
+<p>Using the manager account to use the application&#8201;&#8212;&#8201;should be able to execute all the commands below</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-patient"><a class="link" href="#adding-a-patient">F.3. Adding a patient</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test case: <code>add n/Alex p/WRONG e/a@bc.com a/Anywhere</code><br>
+Expected: An error will occur. Phone number format is invalid.</p>
+</li>
+<li>
+<p>Test case: <code>add n/Alex p/1234 e/WRONG a/Anywhere</code><br>
+Expected: An error will occur. Email format is invalid.</p>
+</li>
+<li>
+<p>Test case: <code>add n/Alex Yeoh p/1234 e/alexyeoh@example.com a/Anywhere</code><br>
+Expected: An error will occur. Such patient already exists.</p>
+</li>
+<li>
+<p>Test case: <code>add n/Alex Yeoh p/1234 e/a@b.com a/Anywhere</code><br>
+Expected: Add successful. Details of the added contact shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-patient"><a class="link" href="#deleting-a-patient">F.4. Deleting a patient</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a patient while all patients are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all patients using the <code>list</code> command. Multiple patients in the list.</p>
 </li>
 <li>
 <p>Test case: <code>delete 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+Expected: First patient is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
 </li>
 <li>
 <p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
+<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size or negative integer), <code>delete Alex</code><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting a patient when some patients are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Find some patients using the <code>find</code> command. Multiple patients in the list.</p>
+</li>
+<li>
+<p>Test case: <code>delete 2</code><br>
+Expected: Second patient is deleted from the found list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>delete 0</code><br>
+Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size or negative integer), <code>delete Alex</code><br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -1610,29 +2040,183 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
+<h3 id="editing-a-patient"><a class="link" href="#editing-a-patient">F.5. Editing a patient</a></h3>
+<div class="paragraph">
+<p>Prerequisites: List some patients using the <code>list</code> or <code>find</code> command. At least one patient in the list.<br></p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Dealing with missing/corrupted data files</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
+<p>Test case: <code>edit</code><br>
+Expected: An error will occur. Invalid command format.</p>
+</li>
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+<p>Test case: <code>edit 1</code><br>
+Expected: An error will occur. At least one field to edit must be specified.</p>
+</li>
+<li>
+<p>Test case: <code>edit 1 n/Alex Tan</code><br>
+Expected: Edit successful. First patient&#8217;s name will be updated to Alex Tan.</p>
+</li>
+<li>
+<p>Test case: <code>edit 1 y/</code><br>
+Expected: Edit successful. Clears all the existing allergy of the first patient.</p>
 </li>
 </ol>
 </div>
-</li>
-</ol>
 </div>
+<div class="sect2">
+<h3 id="adding-allergy-to-a-patient"><a class="link" href="#adding-allergy-to-a-patient">F.6. Adding allergy to a patient</a></h3>
 <div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+<p>Prerequisites: List all patients using the <code>list</code> command. Multiple patients in the list.<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test case: <code>addall</code>, <code>addall 1</code><br>
+Expected: An error will occur. Invalid command format.</p>
+</li>
+<li>
+<p>Test case: <code>addall 1 y/</code><br>
+Expected: An error will occur. Allergy names should be alphanumeric. An empty string is not a valid input.</p>
+</li>
+<li>
+<p>Test case: <code>addall 1 y/amoxicillin</code><br>
+Expected: An error will occur. Amoxicillin is already associated to the first patient.</p>
+</li>
+<li>
+<p>Test case: <code>addall 1 y/ibuprofen</code><br>
+Expected: Add allergy successful. The first patient is now associated with ibuprofen allergy.</p>
+</li>
+<li>
+<p>Test case: <code>addall 1 y/amoxicillin y/aspirin</code><br>
+Expected: Add allergy successful. Amoxicillin is ignored, since it is already associated to the first patient. Aspirin allergy is added.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-allergy-from-a-patient"><a class="link" href="#removing-allergy-from-a-patient">F.7. Removing allergy from a patient</a></h3>
+<div class="paragraph">
+<p>Prerequisites: List all patients using the <code>list</code> command. Multiple patients in the list.<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test case: <code>remall</code>, <code>remall 1</code><br>
+Expected: An error will occur. Invalid command format.</p>
+</li>
+<li>
+<p>Test case: <code>remall 1 y/</code><br>
+Expected: An error will occur. Allergy names should be alphanumeric. An empty string is not a valid input.</p>
+</li>
+<li>
+<p>Test case: <code>remall 1 y/toxin</code><br>
+Expected: An error will occur. Cannot find toxin in the list of allergies for the first patient.</p>
+</li>
+<li>
+<p>Test case: <code>remall 1 y/amoxicillin</code><br>
+Expected: Remove allergy successful. The first patient is now not associated with amoxicillin allergy anymore.</p>
+</li>
+<li>
+<p>Test case: <code>remall 2 y/penicillin y/aspirin</code><br>
+Expected: Remove allergy successful. Aspirin is ignored, since it is not associated to the second patient. Penicillin allergy is removed.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-patient"><a class="link" href="#selecting-a-patient">F.8. Selecting a patient</a></h3>
+<div class="paragraph">
+<p>Prerequisites: List some patients using the <code>list</code> or <code>find</code> command. At least one patient in the list.<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test case: <code>select 1</code><br>
+Expected: Selects the first patient in the list. The patient card is highlighted. The google search page of the first allergy in the list will be shown.</p>
+</li>
+<li>
+<p>Test case: <code>edit 1 y/</code><br>
+Expected: Edit successful. Removes all the allergies of the first patient.</p>
+</li>
+<li>
+<p>Test case: <code>select 1</code><br>
+Expected: Selects the first patient in the list. The patient card is highlighted. Since the patient has no allergy, the default page will be shown.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-an-action"><a class="link" href="#undoing-an-action">F.9. Undoing an action</a></h3>
+<div class="paragraph">
+<p>Prerequisites: List all patients using the <code>list</code> command. Multiple patients in the list.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test case: <code>undo</code><br>
+Expected: An error will occur. No commands to undo.</p>
+</li>
+<li>
+<p>Test case: <code>find Alex</code><br>
+Expected: Find successful. Search result for Alex will be shown.</p>
+</li>
+<li>
+<p>Test case: <code>undo</code><br>
+Expected. An error will occur. No commands to undo as find does not change the state of giatros book.</p>
+</li>
+<li>
+<p>Test case: <code>addall 1 y/benzene</code><br>
+Expected: Add allergy successful. The first patient in the found list will now have a benzene allergy.</p>
+</li>
+<li>
+<p>Test case: <code>undo</code><br>
+Expected: Undo successful. The benzene allergy will be removed and the giatros book reverts to the previous state.</p>
+</li>
+<li>
+<p>Test case: <code>addall 1 y/amoxicillin</code><br>
+Expected: An error will occur. The first patient is already allergic to amoxicillin.</p>
+</li>
+<li>
+<p>Test case: <code>undo</code><br>
+Expected: An error will occur. No commands to undo as the previous step fails to modify the giatros book state due to the addall command failing its execution.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redoing-an-action"><a class="link" href="#redoing-an-action">F.10. Redoing an action</a></h3>
+<div class="paragraph">
+<p>Prerequisites: List all patients using the <code>login</code> and <code>list</code> command respectively. Multiple patients in the list.
+You may need to restart your application if you just finished testing the <code>undo</code> command.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test case: <code>redo</code><br>
+Expected: An error will occur. No commands to redo.</p>
+</li>
+<li>
+<p>Test case: <code>addall 1 y/benzene</code><br>
+Expected: Add allergy successful. The first patient in the found list will now have a benzene allergy.</p>
+</li>
+<li>
+<p>Test case: <code>undo</code><br>
+Expected: Undo successful. The benzene allergy will be removed and the giatros book reverts to the previous state.</p>
+</li>
+<li>
+<p>Test case: <code>redo</code><br>
+Expected: Redo successful. The benzene allergy will be added back, reverting the previous undo command.</p>
+</li>
+<li>
+<p>Test case: <code>redo</code><br>
+Expected: An error will occur. No commands to redo.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 16:45:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 06:15:06 UTC</div></div></div></body></html>

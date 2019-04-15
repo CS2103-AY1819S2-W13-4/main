@@ -53,7 +53,7 @@ remove allergies from the existing list associated to a patient.</p>
 </div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&amp;search=githbub_wfxronald">Code contribution</a>]</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -64,7 +64,7 @@ remove allergies from the existing list associated to a patient.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.2</code> - <code>v1.4</code> (3 releases) on GitHub</p>
+<p>Managed releases <code>v1.0</code> - <code>v1.4</code> (5 releases) on GitHub</p>
 </li>
 </ul>
 </div>
@@ -216,8 +216,8 @@ The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p
 <p>Multiple allergies can be removed at a time by separating the distinct allergies with distinct <code>y/</code> tags, e.g. <code>y/aspirin y/ibuprofen</code>.</p>
 </li>
 <li>
-<p>Allergies not already associated with the patient will be ignored. For example, if the 1st patient is allergic to <code>aspirin</code>, <code>addall 1 y/ibuprofen</code>
-will not modify the allergy list while <code>addall 1 y/aspirin y/ibuprofen</code> will just remove <code>aspirin</code> from the allergy list.</p>
+<p>Allergies not already associated with the patient will be ignored. For example, if the 1st patient is allergic to <code>aspirin</code>, <code>remall 1 y/ibuprofen</code>
+will not modify the allergy list while <code>remall 1 y/aspirin y/ibuprofen</code> will just remove <code>aspirin</code> from the allergy list.</p>
 </li>
 </ul>
 </div>
@@ -254,8 +254,80 @@ Removes two allergies, <code>aspirin</code> and <code>amoxicillin</code> from th
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="add-remove-allergy-feature"><a class="link" href="#add-remove-allergy-feature">Add/Remove Allergy Feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p><em>{to be added}</em></p>
+<p>The add and remove allergy feature is implemented to extend the functionality of <code>Allergy</code> tags.
+Currently, the <code>edit</code> command will overwrite the existing <code>Allergy</code> tags if user attempts to edit the existing <code>Allergy</code>.
+With the <code>addall</code> and <code>remall</code> command, it is now possible to add or remove a single or multiple allergies associated with a patient.</p>
+</div>
+<div class="paragraph">
+<p>The functionality of the classes related to <code>addall</code> and <code>remall</code> are listed below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddallCommandParser</code> and <code>RemallCommandParser</code>&#8201;&#8212;&#8201;Reads the user input and create <code>AddallCommand</code> and <code>RemallCommand</code> object respectively.</p>
+</li>
+<li>
+<p><code>AddallCommand</code> and <code>RemallCommand</code>&#8201;&#8212;&#8201;When executed, the command will result in the addition or removal of a single or multiple allergies.</p>
+</li>
+<li>
+<p><code>Allergy</code>&#8201;&#8212;&#8201;An object that models allergy. It contains a String describing the name of the allergy.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A patient&#8217;s <code>Allergy</code> is stored in a Java HashSet, which stores only unique <code>Allergy</code> object.
+This feature makes use of this behaviour of a HashSet to allow user to add or remove allergies from the patient.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addall</code> command uses the <code>.addAll()</code> method, which takes in a set of <code>Allergy</code> objects and add them in if they are not inside the set already.</p>
+</li>
+<li>
+<p><code>remall</code> command uses the <code>.remAll()</code> method, which takes in a set of <code>Allergy</code> objects and remove them if they are actually inside in the set.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the add allergy mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application and logs into the STAFF account.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. Assuming that the patient list is not empty, the user executes <code>addall 1 y/newallergy</code> to add newallergy to the first patient in the list.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. This command in string format will be passed to the AddallCommandParser, which will check if the command format is valid.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. Since this command has a valid format, the system will create a new AddallCommand object, which will be executed.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. The system will locate the first patient in the patient list, and adds the non-existing allergy to the unique list of patient allergy.</p>
+</div>
+<div class="paragraph">
+<p>The process is described in sequence diagram shown below:
+The following sequence diagram shows how the add allergy operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddAllergySequenceDiagram.png" alt="AddAllergySequenceDiagram" width="800">
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 16:45:31 UTC</div></div></div></body></html>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect"><a class="link" href="#aspect">Aspect:</a></h5>
+
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 06:15:06 UTC</div></div></div></body></html>

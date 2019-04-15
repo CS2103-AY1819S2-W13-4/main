@@ -11,30 +11,41 @@
 <ul class="sectlevel1">
 <li><a href="#introduction">1. Introduction</a></li>
 <li><a href="#quick-start">2. Quick Start</a></li>
-<li><a href="#Features">3. Features</a>
+<li><a href="#Authentication">3. User Authentication Features</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-patient-code-add-code">3.2. Adding a patient: <code>add</code></a></li>
-<li><a href="#listing-all-patients-code-list-code">3.3. Listing all patients : <code>list</code></a></li>
-<li><a href="#editing-a-patient-code-edit-code">3.4. Editing a patient : <code>edit</code></a></li>
-<li><a href="#locating-patients-by-name-code-find-code">3.5. Locating patients by name: <code>find</code></a></li>
-<li><a href="#deleting-a-patient-code-delete-code">3.6. Deleting a patient: <code>delete</code></a></li>
-<li><a href="#selecting-a-patient-code-select-code">3.7. Selecting a patient : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.8. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#adding-allergy-to-a-patient-code-addall-code">3.11. Adding allergy to a patient: <code>addall</code></a></li>
-<li><a href="#removing-allergy-from-a-patient-code-remall-code">3.12. Removing allergy from a patient: <code>remall</code></a></li>
-<li><a href="#adding-appointment-to-a-patient-code-addapt-code">3.13. Adding appointment to a patient: <code>addapt</code></a></li>
-<li><a href="#removing-appointment-from-a-patient-code-remapt-code">3.14. Removing appointment from a patient: <code>remapt</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.17. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#logging-in-to-the-application-code-login-code">3.1. Logging in to the application : <code>login</code></a></li>
+<li><a href="#logging-out-of-the-application-code-logout-code">3.2. Logging out of the application : <code>logout</code></a></li>
+<li><a href="#registering-a-new-staff-to-use-the-application-code-register-code">3.3. Registering a new staff to use the application : <code>register</code></a></li>
 </ul>
 </li>
-<li><a href="#faq">4. FAQ</a></li>
-<li><a href="#command-summary">5. Command Summary</a></li>
+<li><a href="#Features">4. Application Features</a>
+<ul class="sectlevel2">
+<li><a href="#viewing-help-code-help-code">4.1. Viewing help : <code>help</code></a></li>
+<li><a href="#adding-a-patient-code-add-code">4.2. Adding a patient: <code>add</code></a></li>
+<li><a href="#listing-all-patients-code-list-code">4.3. Listing all patients : <code>list</code></a></li>
+<li><a href="#editing-a-patient-code-edit-code">4.4. Editing a patient : <code>edit</code></a></li>
+<li><a href="#locating-patients-by-name-code-find-code">4.5. Locating patients by name: <code>find</code></a></li>
+<li><a href="#deleting-a-patient-code-delete-code">4.6. Deleting a patient: <code>delete</code></a></li>
+<li><a href="#selecting-a-patient-code-select-code">4.7. Selecting a patient : <code>select</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">4.8. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">4.9. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">4.10. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#adding-allergy-to-a-patient-code-addall-code">4.11. Adding allergy to a patient: <code>addall</code></a></li>
+<li><a href="#removing-allergy-from-a-patient-code-remall-code">4.12. Removing allergy from a patient: <code>remall</code></a></li>
+<li><a href="#adding-appointment-to-a-patient-code-addapt-code">4.13. Adding appointment to a patient: <code>addapt</code></a></li>
+<li><a href="#removing-appointment-from-a-patient-code-remapt-code">4.14. Removing appointment from a patient: <code>remapt</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">4.15. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">4.16. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">4.17. Saving the data</a></li>
+</ul>
+</li>
+<li><a href="#faq">5. FAQ</a></li>
+<li><a href="#command-summary">6. Command Summary</a>
+<ul class="sectlevel2">
+<li><a href="#user-authentication-features">6.1. User Authentication Features</a></li>
+<li><a href="#application-features">6.2. Application Features</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -72,7 +83,24 @@ who wish to prescribe a more personalised medication to the patient.</p>
 </div>
 </li>
 <li>
-<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
+<p>At this stage, you are in Guest mode and you will not be able to execute any commands yet.
+You need to login to your account before you can use the application.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If you are a staff who already has an account, please login using this format : <code>login id/USERNAME pw/PASS</code>.</p>
+</li>
+<li>
+<p>If you do not have an account, please approach the manager to create an account for you.</p>
+</li>
+<li>
+<p>Refer to <a href="#Authentication">Section 3, &#8220;User Authentication Features&#8221;</a> for details of the login system.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Once logged in, you can type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
 </li>
 <li>
@@ -95,14 +123,93 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </li>
 <li>
-<p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
+<p>Refer to <a href="#Features">Section 4, &#8220;Application Features&#8221;</a> for details of each command.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Features"><a class="link" href="#Features">3. Features</a></h2>
+<h2 id="Authentication"><a class="link" href="#Authentication">3. User Authentication Features</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When the application is first opened, it will be in Guest mode and no command can be executed except the <code>login</code> command.</p>
+</div>
+<div class="sect2">
+<h3 id="logging-in-to-the-application-code-login-code"><a class="link" href="#logging-in-to-the-application-code-login-code">3.1. Logging in to the application : <code>login</code></a></h3>
+<div class="paragraph">
+<p>Allows a guest to login and start using the application.<br>
+Format: <code>login id/USERNAME pw/PASSWORD</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A dummy staff account with sample data is available by default. Username: <code>STAFF</code> and Password: <code>1122qq</code>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-out-of-the-application-code-logout-code"><a class="link" href="#logging-out-of-the-application-code-logout-code">3.2. Logging out of the application : <code>logout</code></a></h3>
+<div class="paragraph">
+<p>Allows the user to logout when done with the session.<br>
+Format: <code>logout</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can only logout when you have been logged in.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="registering-a-new-staff-to-use-the-application-code-register-code"><a class="link" href="#registering-a-new-staff-to-use-the-application-code-register-code">3.3. Registering a new staff to use the application : <code>register</code></a></h3>
+<div class="paragraph">
+<p>Allows the manager to create new staff account using which new staff can log into the application.<br>
+Format: <code>register id/USERNAME pw/PASSWORD n/NAME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Only the manager can create new staff accounts. A normal staff will not be able to execute the <code>register</code> command</p>
+</li>
+<li>
+<p>The username <code>manager</code> is restricted. There can only be one manager.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A dummy manager account is available by default. Username: <code>MANAGER</code> and Password: <code>1122qq</code>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Features"><a class="link" href="#Features">4. Application Features</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -129,14 +236,14 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
+<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.1. Viewing help : <code>help</code></a></h3>
 <div class="paragraph">
 <p>Allows a new user to learn about the different commands that are available.<br>
 Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-patient-code-add-code"><a class="link" href="#adding-a-patient-code-add-code">3.2. Adding a patient: <code>add</code></a></h3>
+<h3 id="adding-a-patient-code-add-code"><a class="link" href="#adding-a-patient-code-add-code">4.2. Adding a patient: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a patient into Giatros.<br>
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [y/ALLERGY] [apt/APPOINTMENT]&#8230;&#8203; `</p>
@@ -169,14 +276,14 @@ A patient can have any number of appointments (including 0)
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-patients-code-list-code"><a class="link" href="#listing-all-patients-code-list-code">3.3. Listing all patients : <code>list</code></a></h3>
+<h3 id="listing-all-patients-code-list-code"><a class="link" href="#listing-all-patients-code-list-code">4.3. Listing all patients : <code>list</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all patients stored in Giatros.<br>
 Format: <code>list</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-patient-code-edit-code"><a class="link" href="#editing-a-patient-code-edit-code">3.4. Editing a patient : <code>edit</code></a></h3>
+<h3 id="editing-a-patient-code-edit-code"><a class="link" href="#editing-a-patient-code-edit-code">4.4. Editing a patient : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing patient stored in Giatros.<br>
 Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [y/ALLERGY] [apt/APPOINTMENT]&#8230;&#8203;</code></p>
@@ -237,7 +344,7 @@ Edits the name of the 2nd patient to be <code>Betsy Crower</code> and clears all
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-patients-by-name-code-find-code"><a class="link" href="#locating-patients-by-name-code-find-code">3.5. Locating patients by name: <code>find</code></a></h3>
+<h3 id="locating-patients-by-name-code-find-code"><a class="link" href="#locating-patients-by-name-code-find-code">4.5. Locating patients by name: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds patients whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -306,7 +413,7 @@ Returns any patients having names <code>Betsy</code>, <code>Tim</code>, or <code
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-patient-code-delete-code"><a class="link" href="#deleting-a-patient-code-delete-code">3.6. Deleting a patient: <code>delete</code></a></h3>
+<h3 id="deleting-a-patient-code-delete-code"><a class="link" href="#deleting-a-patient-code-delete-code">4.6. Deleting a patient: <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Removes a patient from Giatros<br>
 Format: <code>delete INDEX</code></p>
@@ -347,7 +454,7 @@ Deletes the 1st patient in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-patient-code-select-code"><a class="link" href="#selecting-a-patient-code-select-code">3.7. Selecting a patient : <code>select</code></a></h3>
+<h3 id="selecting-a-patient-code-select-code"><a class="link" href="#selecting-a-patient-code-select-code">4.7. Selecting a patient : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the patient identified by the index number used in the displayed patient list.<br>
 Format: <code>select INDEX</code></p>
@@ -388,7 +495,7 @@ Selects the 1st patient in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.8. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.8. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -409,7 +516,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.9. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the Giatros book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -454,7 +561,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.10. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -486,7 +593,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-allergy-to-a-patient-code-addall-code"><a class="link" href="#adding-allergy-to-a-patient-code-addall-code">3.11. Adding allergy to a patient: <code>addall</code></a></h3>
+<h3 id="adding-allergy-to-a-patient-code-addall-code"><a class="link" href="#adding-allergy-to-a-patient-code-addall-code">4.11. Adding allergy to a patient: <code>addall</code></a></h3>
 <div class="paragraph">
 <p>Adds one or more allergies to an existing patient in Giatros.<br>
 Format: <code>addall INDEX y/ALLERGY [y/ALLERGY]&#8230;&#8203;</code></p>
@@ -541,7 +648,7 @@ Adds two allergies, <code>aspirin</code> and <code>amoxicillin</code> to the 3rd
 </div>
 </div>
 <div class="sect2">
-<h3 id="removing-allergy-from-a-patient-code-remall-code"><a class="link" href="#removing-allergy-from-a-patient-code-remall-code">3.12. Removing allergy from a patient: <code>remall</code></a></h3>
+<h3 id="removing-allergy-from-a-patient-code-remall-code"><a class="link" href="#removing-allergy-from-a-patient-code-remall-code">4.12. Removing allergy from a patient: <code>remall</code></a></h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -572,8 +679,8 @@ The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p
 <p>Multiple allergies can be removed at a time by separating the distinct allergies with distinct <code>y/</code> tags, e.g. <code>y/aspirin y/ibuprofen</code>.</p>
 </li>
 <li>
-<p>Allergies not already associated with the patient will be ignored. For example, if the 1st patient is allergic to <code>aspirin</code>, <code>addall 1 y/ibuprofen</code>
-will not modify the allergy list while <code>addall 1 y/aspirin y/ibuprofen</code> will just remove <code>aspirin</code> from the allergy list.</p>
+<p>Allergies not already associated with the patient will be ignored. For example, if the 1st patient is allergic to <code>aspirin</code>, <code>remall 1 y/ibuprofen</code>
+will not modify the allergy list while <code>remall 1 y/aspirin y/ibuprofen</code> will just remove <code>aspirin</code> from the allergy list.</p>
 </li>
 </ul>
 </div>
@@ -596,7 +703,7 @@ Removes two allergies, <code>aspirin</code> and <code>amoxicillin</code> from th
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-appointment-to-a-patient-code-addapt-code"><a class="link" href="#adding-appointment-to-a-patient-code-addapt-code">3.13. Adding appointment to a patient: <code>addapt</code></a></h3>
+<h3 id="adding-appointment-to-a-patient-code-addapt-code"><a class="link" href="#adding-appointment-to-a-patient-code-addapt-code">4.13. Adding appointment to a patient: <code>addapt</code></a></h3>
 <div class="paragraph">
 <p>Adds one or more appointments to an existing patient in Giatros.<br>
 Format: <code>addapt INDEX apt/APPOINTMENT [apt/APPOINTMENT]&#8230;&#8203;</code></p>
@@ -652,7 +759,7 @@ Adds two appointments, <code>2019-01-01 15:15</code> and <code>2019-02-02 15:15:
 </div>
 </div>
 <div class="sect2">
-<h3 id="removing-appointment-from-a-patient-code-remapt-code"><a class="link" href="#removing-appointment-from-a-patient-code-remapt-code">3.14. Removing appointment from a patient: <code>remapt</code></a></h3>
+<h3 id="removing-appointment-from-a-patient-code-remapt-code"><a class="link" href="#removing-appointment-from-a-patient-code-remapt-code">4.14. Removing appointment from a patient: <code>remapt</code></a></h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -708,36 +815,30 @@ Removes two appointments, <code>2019-01-01 15:15</code> and <code>2019-02-02 15:
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.15. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from Giatros.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.16. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.17. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.17. Saving the data</a></h3>
 <div class="paragraph">
 <p>Giatros data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></h3>
-<div class="paragraph">
-<p><em>{explain how the user can enable/disable data encryption}</em></p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
+<h2 id="faq"><a class="link" href="#faq">5. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
@@ -746,8 +847,28 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">6. Command Summary</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="user-authentication-features"><a class="link" href="#user-authentication-features">6.1. User Authentication Features</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Login (Guest-only)</strong> <code>login id/USERNAME pw/PASSWORD</code>
+e.g. <code>login id/STAFF pw/1122qq</code></p>
+</li>
+<li>
+<p><strong>Logout (Staff-only)</strong> <code>logout</code></p>
+</li>
+<li>
+<p><strong>Register (Manager-only)</strong> <code>register id/USERNAME pw/PASSWORD n/NAME</code>
+e.g. <code>register id/USER pw/1122qq n/New User</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="application-features"><a class="link" href="#application-features">6.2. Application Features</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -796,7 +917,16 @@ e.g.<code>select 2</code></p>
 <li>
 <p><strong>Redo</strong> : <code>redo</code></p>
 </li>
+<li>
+<p><strong>Add allergy</strong> : <code>addall INDEX y/ALLERGY [y/ALLERGY]</code>
+e.g. <code>addall 1 y/ibuprofen</code></p>
+</li>
+<li>
+<p><strong>Remove allergy</strong> : <code>remall INDEX y/ALLERGY [y/ALLERGY]</code>
+e.g. <code>remall 1 y/aspirin y/paracetamol</code></p>
+</li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 16:45:31 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 06:15:06 UTC</div></div></div></body></html>
